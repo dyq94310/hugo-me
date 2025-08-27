@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ block "title" . }}{{ .Title }}{{ end }}</title>
+    <meta name="description" content="{{ .Site.Title }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}index.xml">
+    <style>
+        body {
+            max-width: 720px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.7;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        header,
+        footer {
+            opacity: .7;
+            font-size: .9rem
+        }
+
+        pre,
+        code {
+            font-family: ui-monospace, Menlo, Consolas, monospace
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 2rem 0
+        }
+
+        ul {
+            padding-left: 1.2rem
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/">{{ .Site.Title }}</a> · <a href="/index.xml">RSS</a>
+    </header>
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+    <footer>
+        <hr>© {{ now.Year }} · Powered by Hugo（无主题）
+    </footer>
+
+    {{ if .Store.Get "hasMermaid" }}
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    {{ end }}
+</body>
+
+{{ end }}
+
+</html>

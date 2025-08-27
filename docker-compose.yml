@@ -1,0 +1,16 @@
+services:
+  web:
+    image: nginx:alpine
+    ports: [ "80:80" ]
+    volumes:
+      - ./public:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+  hugo:
+    image: hugomods/hugo:0.148.1
+    working_dir: /src
+    volumes:
+      - ./site:/src
+      - ./public:/src/public
+    profiles: [ "build" ] # 只在构建时运行

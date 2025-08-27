@@ -1,0 +1,12 @@
+baseURL = "https://blog.groovydeng.eu.org/"   # 改成你的域名（带 /）
+languageCode = "zh-cn"
+title = "My Blog"
+
+# 只关闭 sitemap 和分类相关，保留 RSS
+disableKinds = ["sitemap", "taxonomy", "term"]
+
+# 明确声明首页输出 RSS
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML"]
+page = ["HTML"]

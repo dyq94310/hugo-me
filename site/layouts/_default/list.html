@@ -1,0 +1,12 @@
+{{ define "title" }}{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}{{ end }}
+{{ define "main" }}
+<h1>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}</h1>
+<ul>
+    {{ range .Pages.ByDate.Reverse }}
+    <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <small> — {{ .Date.Format "2006-01-02" }}</small>
+    </li>
+    {{ end }}
+</ul>
+{{ end }}
