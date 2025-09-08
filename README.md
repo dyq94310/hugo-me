@@ -41,9 +41,9 @@ cd hugo-me
 ```bash
 docker compose --profile build run --rm hugo hugo --minify
 ```
-或者
+或者直接运行包装脚本
 ```bash
-minify.sh
+sh minify.sh
 ```
 
 3. 启动服务：
