@@ -152,12 +152,12 @@ flowchart LR
     subgraph DATAPLANE
         PC
         SZ_VPS
-        CNIX_int
+        CNIX_VPN
         outbound_vps
         GOOGLE
     end
 
-    PC --> SZ_VPS --> CNIX_int --> outbound_vps --> GOOGLE
+    PC --> SZ_VPS --> CNIX_VPN --> outbound_vps --> GOOGLE
 
     %% =========================
     %% 控制面 Control Plane
@@ -177,7 +177,7 @@ flowchart LR
     NODEPASS_DASH -- https_api_control --> MASTER_OUTBOUND
 
     SZ_VPS -. deploy_master .- MASTER_SZ
-    CNIX_int -. deploy_master .- MASTER_CNIX
+    CNIX_VPN -. deploy_master .- MASTER_CNIX
     outbound_vps -. deploy_master .- MASTER_OUTBOUND
 
     CC_VPS -. deploy_app .- NODEPASS_DASH
