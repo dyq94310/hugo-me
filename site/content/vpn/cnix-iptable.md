@@ -1,5 +1,5 @@
 ---
-title: "初探 CNIX 专线： IX 的一次体验"
+title: "CNIX 服务器安全开放 Socket 端口指南（iptables + 持久化）"
 date: 2025-11-21
 ---
 
