@@ -3,6 +3,14 @@
 <article>
     <h1>{{ .Title }}</h1>
     <p><small>{{ .Date.Format "2006-01-02 15:04" }}</small></p>
+    <!-- 目录开始 -->
+    {{ if and (gt .WordCount 400 ) (.Params.toc | default true) }}
+    <aside class="toc-container">
+        <h3>目录</h3>
+        {{ .TableOfContents }}
+    </aside>
+    {{ end }}
+    <!-- 目录结束 -->
     <div>{{ .Content }}</div>
 </article>
 {{ end }}

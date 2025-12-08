@@ -1,4 +1,4 @@
-baseURL = "https://blog.groovydeng.eu.org/"   # 改成你的域名（带 /）
+baseURL = "https://blog.groovydeng.eu.org/" # 改成你的域名（带 /）
 languageCode = "zh-cn"
 title = "My Blog"
 
@@ -10,3 +10,9 @@ disableKinds = ["sitemap", "taxonomy", "term"]
 home = ["HTML", "RSS"]
 section = ["HTML"]
 page = ["HTML"]
+
+[markup]
+[markup.tableOfContents]
+startLevel = 2  # 目录从 H2 开始 (##)
+endLevel = 4    # 目录到 H4 结束 (####)
+ordered = false # 使用无序列表 (<ul>) 还是有序列表 (<ol>)

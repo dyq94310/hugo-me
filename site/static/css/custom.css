@@ -20,3 +20,54 @@ td {
 table tr:nth-child(even) {
     background-color: #fafafa;
 }
+
+/* 目录容器样式 */
+.toc-container {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid #e0e0e0;
+}
+
+/* 如果你想让目录在宽屏下悬浮在右侧，可以使用以下代码 (可选) */
+@media (min-width: 1200px) {
+    .toc-container {
+        position: fixed;
+        top: 100px;
+        /* 距离顶部距离 */
+        right: 20px;
+        /* 距离右边距离 */
+        width: 250px;
+        max-height: 80vh;
+        /* 防止目录太长超出屏幕 */
+        overflow-y: auto;
+        /* 目录太长时可以滚动 */
+        z-index: 100;
+    }
+}
+
+/* 目录列表样式 */
+.toc-container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.toc-container ul ul {
+    padding-left: 1rem;
+    /* 子目录缩进 */
+}
+
+.toc-container a {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.95rem;
+    display: block;
+    padding: 2px 0;
+    transition: color 0.2s;
+}
+
+.toc-container a:hover {
+    color: #007bff;
+    /* 鼠标悬停颜色 */
+}
