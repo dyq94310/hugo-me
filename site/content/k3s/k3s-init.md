@@ -1,6 +1,6 @@
 ---
 title: "k3s 体验：从 docker-compose 到轻量级集群"
-date: 2025-09-17
+date: 2025-12-08
 ---
 
 # k3s 体验：从 docker-compose 到轻量级集群
