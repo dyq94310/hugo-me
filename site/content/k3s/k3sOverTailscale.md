@@ -102,7 +102,8 @@ vpn-auth: "name=tailscale,joinKey=${TAILSCALE_AUTH_KEY}"
 ```
 
 2.  **安装并加入集群**：
-      * `K3S_URL` 建议使用 Server 的 Tailscale IP（如果 Server 已经就绪），或者公网 IP。
+      * `K3S_URL(Agent必填)` 建议使用 Server 的 Tailscale IP（如果 Server 已经就绪），或者公网 IP。
+      **在没有明确设置 exec 命令的情况下设置K3S_URL，会将命令默认为 "agent"。**
       * `K3S_TOKEN` 为 Server 节点的 `/var/lib/rancher/k3s/server/node-token`。
 
 <!-- end list -->
