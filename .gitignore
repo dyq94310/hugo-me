@@ -5,6 +5,7 @@ node_modules/
 /public/
 /resources/
 /dist/
+.hugo_build.lock
 
 # Hugo's default directory for themes (if using submodule or external themes)
 themes/

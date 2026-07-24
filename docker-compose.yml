@@ -11,6 +11,5 @@ services:
     image: hugomods/hugo:0.148.1
     working_dir: /src
     volumes:
-      - ./site:/src
-      - ./public:/src/public
+      - ./:/src
     profiles: [ "build" ] # 只在构建时运行

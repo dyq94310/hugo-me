@@ -1,0 +1,22 @@
+baseURL = "https://blog.groovydeng.eu.org/"
+languageCode = "zh-cn"
+title = "My Blog"
+
+contentDir = "site/content"
+layoutDir = "site/layouts"
+staticDir = "site/static"
+archetypeDir = "site/archetypes"
+
+# Disable sitemap and taxonomy pages while retaining RSS.
+disableKinds = ["sitemap", "taxonomy", "term"]
+
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML"]
+page = ["HTML"]
+
+[markup]
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 4
+ordered = false
