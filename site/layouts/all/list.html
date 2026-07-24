@@ -1,0 +1,24 @@
+{{ define "title" }}全部文章 · {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<section class="archive-intro">
+    <p class="eyebrow">ARCHIVE / ALL NOTES</p>
+    <h1>全部文章</h1>
+    <p>按照发布时间，从新到旧整理的全部记录。</p>
+</section>
+<div class="section-heading">
+    <h2>文章索引</h2>
+    <span>{{ len site.RegularPages }} 篇</span>
+</div>
+<div class="archive-list">
+    {{ range site.RegularPages.ByDate.Reverse }}
+    <article class="archive-item">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+        <div>
+            <span class="archive-item__section">{{ .Section }}</span>
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        </div>
+        <span class="archive-item__reading">{{ .ReadingTime }} min</span>
+    </article>
+    {{ end }}
+</div>
+{{ end }}

@@ -98,12 +98,12 @@ a:hover {
 
 .site-main {
     min-height: calc(100vh - 150px);
-    padding: 5.5rem 0 6rem;
+    padding: 4.5rem 0 6rem;
 }
 
 .home-intro {
     max-width: 680px;
-    margin-bottom: 5rem;
+    margin-bottom: 4.25rem;
 }
 
 .eyebrow,
@@ -138,6 +138,28 @@ h3 {
     font-size: 1.08rem;
 }
 
+.intro-link,
+.all-posts-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    margin-top: 1.4rem;
+    padding-bottom: .15rem;
+    border-bottom: 1px solid #9ab9bc;
+    font-size: .86rem;
+    font-weight: 700;
+}
+
+.intro-link span,
+.all-posts-link span {
+    transition: transform .2s ease;
+}
+
+.intro-link:hover span,
+.all-posts-link:hover span {
+    transform: translateX(4px);
+}
+
 .section-heading {
     display: flex;
     align-items: baseline;
@@ -164,8 +186,14 @@ h3 {
     display: grid;
     grid-template-columns: 150px 1fr;
     gap: 2rem;
-    padding: 1.65rem 0 1.8rem;
+    padding: 1.4rem 1rem 1.55rem 0;
     border-bottom: 1px solid var(--line);
+    transition: padding-left .2s ease, background-color .2s ease;
+}
+
+.post-card:hover {
+    padding-left: .8rem;
+    background: rgba(255, 253, 249, .7);
 }
 
 .post-card__date {
@@ -173,6 +201,19 @@ h3 {
     color: var(--faint);
     font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
     font-size: .75rem;
+}
+
+.post-card__section {
+    display: block;
+    width: fit-content;
+    margin-top: .45rem;
+    padding: .1rem .45rem;
+    border-radius: 4px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    font-family: Inter, ui-sans-serif, sans-serif;
+    font-size: .68rem;
+    letter-spacing: .04em;
 }
 
 .post-card h3 {
@@ -195,6 +236,16 @@ h3 {
     font-size: .92rem;
 }
 
+.post-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 650px;
+    color: var(--faint);
+    font-family: Inter, ui-sans-serif, sans-serif;
+    font-size: .75rem;
+}
+
 .read-more {
     font-size: .8rem;
     font-weight: 700;
@@ -208,6 +259,72 @@ h3 {
 
 .read-more:hover span {
     transform: translate(3px, -3px);
+}
+
+.all-posts-link {
+    margin-top: 2rem;
+}
+
+.archive-intro {
+    margin-bottom: 3.7rem;
+}
+
+.archive-intro h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.8rem, 7vw, 4.8rem);
+    font-weight: 500;
+}
+
+.archive-intro p:last-child {
+    margin: 1rem 0 0;
+    color: var(--muted);
+}
+
+.archive-list {
+    border-top: 1px solid var(--line);
+}
+
+.archive-item {
+    display: grid;
+    grid-template-columns: 120px 1fr 65px;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.archive-item > time,
+.archive-item__reading {
+    color: var(--faint);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .75rem;
+}
+
+.archive-item__section {
+    color: var(--accent);
+    font-family: Inter, ui-sans-serif, sans-serif;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.archive-item h3 {
+    margin: .25rem 0 0;
+    font-size: 1.08rem;
+}
+
+.archive-item h3 a {
+    color: var(--ink);
+}
+
+.archive-item h3 a:hover {
+    color: var(--accent);
+}
+
+.archive-item__reading {
+    text-align: right;
 }
 
 .post-header {
@@ -414,7 +531,7 @@ h3 {
     }
 
     .site-main {
-        padding: 3.5rem 0 4rem;
+        padding: 3rem 0 4rem;
     }
 
     .home-intro {
@@ -423,11 +540,58 @@ h3 {
 
     .post-card {
         display: block;
-        padding: 1.35rem 0 1.5rem;
+        padding: 1.3rem 0 1.45rem;
+    }
+
+    .post-card:hover {
+        padding-left: 0;
+        background: transparent;
     }
 
     .post-card__date {
+        display: flex;
+        align-items: center;
+        gap: .65rem;
         margin-bottom: .35rem;
+    }
+
+    .post-card__section {
+        display: inline-block;
+        margin-top: 0;
+    }
+
+    .post-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .post-card p {
+        margin-top: .45rem;
+        font-size: .88rem;
+    }
+
+    .archive-item {
+        grid-template-columns: 1fr auto;
+        gap: .2rem 1rem;
+        align-items: start;
+    }
+
+    .archive-item > time {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .archive-item__reading {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .archive-item > div {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .archive-item h3 {
+        font-size: 1rem;
     }
 
     .article-content {
