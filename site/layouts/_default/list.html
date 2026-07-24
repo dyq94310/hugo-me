@@ -1,12 +1,24 @@
 {{ define "title" }}{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}{{ end }}
 {{ define "main" }}
-<h1>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}</h1>
-<ul>
+<section class="home-intro">
+    <p class="eyebrow">PERSONAL NOTES / 2026</p>
+    <h1>{{ if .IsHome }}记录一些技术与生活{{ else }}{{ .Title }}{{ end }}</h1>
+    <p class="home-intro__lead">把遇到的问题写下来，把实践过的方法留下来。</p>
+</section>
+<div class="section-heading">
+    <h2>{{ if .IsHome }}最新文章{{ else }}文章列表{{ end }}</h2>
+    <span>{{ len .Pages }} 篇</span>
+</div>
+<div class="post-list">
     {{ range .Pages.ByDate.Reverse }}
-    <li>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <small> — {{ .Date.Format "2006-01-02" }}</small>
-    </li>
+    <article class="post-card">
+        <div class="post-card__date">{{ .Date.Format "2006 / 01 / 02" }}</div>
+        <div class="post-card__body">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
+            <a class="read-more" href="{{ .RelPermalink }}">阅读全文 <span aria-hidden="true">↗</span></a>
+        </div>
+    </article>
     {{ end }}
-</ul>
+</div>
 {{ end }}

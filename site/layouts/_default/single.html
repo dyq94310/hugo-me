@@ -1,16 +1,20 @@
 {{ define "title" }}{{ .Title }}{{ end }}
 {{ define "main" }}
 <article>
-    <h1>{{ .Title }}</h1>
-    <p><small>{{ .Date.Format "2006-01-02 15:04" }}</small></p>
-    <!-- 目录开始 -->
+    <header class="post-header">
+        <p class="eyebrow">ARTICLE / {{ .Section | upper }}</p>
+        <h1>{{ .Title }}</h1>
+        <div class="post-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 01 月 02 日 15:04" }}</time>
+            <span>约 {{ .ReadingTime }} 分钟阅读</span>
+        </div>
+    </header>
     {{ if and (gt .WordCount 10 ) (.Params.toc | default true) }}
     <aside class="toc-container">
-        <h3>目录</h3>
+        <p class="toc-label">ON THIS PAGE</p>
         {{ .TableOfContents }}
     </aside>
     {{ end }}
-    <!-- 目录结束 -->
-    <div>{{ .Content }}</div>
+    <div class="article-content">{{ .Content }}</div>
 </article>
 {{ end }}
